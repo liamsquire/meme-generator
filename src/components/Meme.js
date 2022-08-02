@@ -4,28 +4,62 @@ import memesData from '../memesData.js'
 
 export default function Meme() {
 
-    const [getImage, setGetImage] = React.useState({
-        url: troll, 
+    // const [getImage, setGetImage] = React.useState({
+    //     url: troll, 
+    //     name: "troll",
+    //     top: "Top text",
+    //     bottom: "Bottom text"
+    // })
+
+
+    // function getImg() {
+    //     let topText = document.getElementById("meme-start-text")
+    //     let bottomText = document.getElementById("meme-end-text")
+
+    //     let length = memesData.data.memes.length
+    //     console.log("Length: " + length)
+    //     let imgId = memesData.data.memes[Math.floor(Math.random()*length)]
+        
+    //     setGetImage({
+    //         url: imgId.url, 
+    //         name: imgId.name,
+    //         top: topText.value,
+    //         bottom: bottomText.value
+    //     })
+
+    // }
+
+    const [meme, setMeme] = React.useState({
+        url: troll,
         name: "troll",
-        top: "Top",
-        bottom: "Bottom"
+        top: "Top text",
+        bottom: "Bottom text"
     })
 
-    function getImg() {
+
+    function getMeme() {
+        const allMemes = memesData.data.memes
+        let length = allMemes.length
         let topText = document.getElementById("meme-start-text")
         let bottomText = document.getElementById("meme-end-text")
-
-        let length = memesData.data.memes.length
-        console.log("Length: " + length)
-        let imgId = memesData.data.memes[Math.floor(Math.random()*length)]
-        
-        setGetImage({
-            url: imgId.url, 
-            name: imgId.name,
-            top: topText.value,
-            bottom: bottomText.value
+        setMeme(prevMeme => {
+            return {
+                ...prevMeme,
+                url: allMemes[Math.floor(Math.random()*length)].url,
+                top: topText.value,
+                bottom: bottomText.value
+            }
         })
+    }
 
+
+
+    this.handleLoginKeyUp = this.keyUpHandler.bind(this, 'meme-start-text');
+    this.handlePwdKeyUp = this.keyUpHandler.bind(this, 'PwdInput');
+    
+    keyUpHandler(refName, e) {
+        console.log(refName);
+        // prints either LoginInput or PwdInput
     }
 
     return (
@@ -37,13 +71,13 @@ export default function Meme() {
 
 
             <div className="button--generate-meme-image">
-                <button onClick={getImg}>Get a new Meme image 🖼️</button>
+                <button onClick={getMeme}>Get a new Meme image 🖼️</button>
             </div>
 
             <div className="image--wrapper">
                 <div className="image--container">
-                    <div className="meme-text">{getImage.top}</div>
-                    <div><img src={getImage.url} alt={getImage.name} /></div><div className="meme-text">{getImage.bottom}</div>
+                    <div className="meme-text">{meme.top}</div>
+                    <div><img src={meme.url} alt={meme.name} /></div><div className="meme-text">{meme.bottom}</div>
                 </div>
             </div>
 
