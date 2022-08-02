@@ -54,13 +54,13 @@ export default function Meme() {
 
 
 
-    this.handleLoginKeyUp = this.keyUpHandler.bind(this, 'meme-start-text');
-    this.handlePwdKeyUp = this.keyUpHandler.bind(this, 'PwdInput');
+    // this.handleLoginKeyUp = this.keyUpHandler.bind(this, 'meme-start-text');
+    // this.handlePwdKeyUp = this.keyUpHandler.bind(this, 'meme-end-text');
     
-    keyUpHandler(refName, e) {
-        console.log(refName);
-        // prints either LoginInput or PwdInput
-    }
+    // keyUpHandler(refName, e) {
+    //     console.log(refName);
+    //     // prints either LoginInput or PwdInput
+    // }
 
     return (
         <section className="meme--container"> 
